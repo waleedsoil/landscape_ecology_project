@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predictions · Group 4</title>
+<meta name="description" content="What the Group 4 hypotheses predict for each plot and each measured variable, from design factor to instrument, with space for the measured results.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 28L16 6l14 22z' fill='%231f6a44'/%3E%3Ccircle cx='25' cy='8' r='4' fill='%23c9650f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Semi+Condensed:wght@500;600&amp;display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem("g4-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/style.css?v=4">
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="index.html">Group 4 <span>· Aspect × forest type</span></a>
+  <nav class="nav" aria-label="Pages">
+    <a href="index.html">Overview</a>
+    <a href="causal-map.html">Cause–effect map</a>
+    <a href="simulator.html">Simulator</a>
+    <a href="predictions.html" aria-current="page">Predictions</a>
+    <a href="methods.html">Methods</a>
+    <button type="button" class="theme" id="themeBtn" role="switch" aria-checked="false"><span class="track" aria-hidden="true"><span class="knob"></span></span>Dark mode</button>
+  </nav>
+</div></header>
+<script>
+/* light/dark toggle: light by default, the choice is remembered in this browser */
+(function () {
+  var b = document.getElementById('themeBtn'), r = document.documentElement;
+  function sync() { b.setAttribute('aria-checked', r.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
+  b.addEventListener('click', function () {
+    var dark = r.getAttribute('data-theme') !== 'dark';
+    if (dark) r.setAttribute('data-theme', 'dark'); else r.removeAttribute('data-theme');
+    try { localStorage.setItem('g4-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    sync();
+  });
+  sync();
+})();
+</script>
+
+<main>
+<section class="band" style="padding-bottom:18px"><div class="wrap">
+  <h1>Predictions</h1>
+  <p class="sub">What our two hypotheses predict for every variable we measure, at each of the four plots, and which instrument measures it. After the fieldwork, the plot means go into <code>data/results.js</code> and this page compares them with the predictions.</p>
+  <p class="rstate" id="rstate" role="status"></p>
+</div></section>
+
+<section class="band" style="padding-top:0"><div class="wrap">
+  <h2>From design to measurement</h2>
+  <div class="hyps seg" id="hyps" role="group" aria-label="Highlight"><button type="button">All arrows</button><button type="button" data-h="H1">H1 · aspect</button><button type="button" data-h="H2">H2 · forest type</button></div>
+  <div class="mlegend" aria-hidden="true">
+    <span><svg viewBox="0 0 34 12"><line x1="2" y1="6" x2="32" y2="6" stroke="var(--pos)" stroke-width="2.4"/></svg>+ more gives more</span>
+    <span><svg viewBox="0 0 34 12"><line x1="2" y1="6" x2="32" y2="6" stroke="var(--neg)" stroke-width="2.4" stroke-dasharray="6 4"/></svg>− more gives less</span>
+    <span><svg viewBox="0 0 34 12"><line x1="2" y1="6" x2="32" y2="6" stroke="var(--mut)" stroke-width="2" stroke-dasharray="2 3"/></svg>measured by</span>
+    <span><svg viewBox="0 0 34 12"><rect x="2" y="1" width="30" height="10" rx="3" fill="none" stroke="var(--ink)" stroke-width="1.6"/></svg>measured</span>
+    <span><svg viewBox="0 0 34 12"><rect x="2" y="1" width="30" height="10" rx="3" fill="none" stroke="var(--mut)" stroke-width="1.6" stroke-dasharray="4 3"/></svg>not measured</span>
+  </div>
+  <div class="flowgrid">
+    <div class="flowwrap"><svg class="flow" id="flow" viewBox="0 0 1000 580" role="group" aria-label="Chart from the design factors through the processes to the measured variables and the instruments"></svg></div>
+    <div class="panel" id="fdetail" aria-live="polite"></div>
+  </div>
+</div></section>
+
+<section class="band pan" id="plots"><div class="wrap">
+  <h2>Plot by plot</h2>
+  <p class="sub">The 2 × 2 design for one variable at a time: which plot should be highest, what the lines should look like, and the three effects from the analysis plan.</p>
+  <div class="seg vtabs" id="vtabs" role="group" aria-label="Variable"></div>
+  <div class="vpanel" id="vpanel"></div>
+</div></section>
+
+<section class="band" id="all"><div class="wrap">
+  <h2>All predictions at a glance</h2>
+  <p class="sub">↑ higher, ↓ lower, = no difference expected, – not predicted, ± the chains disagree. Effects as in the <a href="methods.html#analysis">analysis plan</a>: aspect = south − north, forest type = coniferous − deciduous, interaction = (S-D − N-D) − (S-C − N-C).</p>
+  <div class="scroll"><table class="mtab stack" id="matrix">
+    <thead><tr><th>Variable</th><th class="c">Aspect</th><th class="c">Forest type</th><th class="c">Interaction</th><th>Hypothesis</th><th>Measured with</th><th>Result</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+</div></section>
+
+<section class="band pan"><div class="wrap">
+  <h2>Adding the results</h2>
+  <div class="notes" style="margin-top:14px">
+    <div><b>One file</b>Open <code>data/results.js</code> and replace <code>null</code> with the plot mean, for example <code>'S-D': 412</code>, or <code>'S-D': [412, 60]</code> to show the spread between the loggers of that plot. The page updates on reload.</div>
+    <div><b>Which numbers</b>Use the statistic named for each variable above (daytime mean, mean daily range, …). H1 is tested on clear days, so use clear-day means for the microclimate and say so in <code>note</code>.</div>
+    <div><b>What a tick means</b>✓ means the measured difference has the predicted sign. It is not a significance test: each combination of aspect and forest type is one stand, so the four plots are compared, not replicated (see <a href="methods.html#analysis">Methods</a>).</div>
+    <div><b>Editing the predictions</b>The predictions, the boxes and the arrows are lists at the top of <code>assets/js/predictions.js</code>. If you change a hypothesis, change its predictions there as well.</div>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot band"><div class="wrap">
+  <p>Group 4: Amatul Jameel, Waleed Ramzan, Mohammed Abakar Hasan Abdalrahman, Pramodya Kumarage · Landscape Ecology Project Seminar 2026/27 (Prof. Dr. Daniela Sauer, Dr. Stephen Asabere), Faculty of Geosciences and Geography, University of Göttingen.</p>
+  <p>The chart is a simplified, layered version of the <a href="causal-map.html">cause–effect map</a>, limited to what we measure. Sources for the arrows are listed on the <a href="methods.html#references">Methods</a> page.</p>
+</div></footer>
+<script src="data/results.js"></script>
+<script src="assets/js/predictions.js?v=1"></script>
+<script>
+/* shows a red notice if a file of the site did not load (for example after an incomplete upload) */
+(function () {
+  var need = {'data/results.js': function () { return !!window.G4_RESULTS; }, 'assets/js/predictions.js': function () { return !!window.G4_PRED; }}, miss = [];
+  if (!getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()) miss.push('assets/css/style.css');
+  for (var f in need) if (!need[f]()) miss.push(f);
+  if (!miss.length) return;
+  var d = document.createElement('div');
+  d.setAttribute('role', 'alert');
+  d.style.cssText = 'background:#d22b3c;color:#fff;padding:12px 16px;font:16px/1.4 system-ui,sans-serif';
+  d.textContent = 'These files did not load: ' + miss.join(', ') + '. Upload the whole repository again (including the assets and data folders), wait a minute, then reload with Ctrl+Shift+R (Cmd+Shift+R on a Mac).';
+  document.body.insertBefore(d, document.body.firstChild);
+})();
+</script>
+</body>
+</html>

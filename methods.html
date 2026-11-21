@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods · Group 4</title>
+<meta name="description" content="Methods of the Group 4 Landscape Ecology project: sensors, soil profile, texture, pH and carbonate tests, field days and analysis plan.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 28L16 6l14 22z' fill='%231f6a44'/%3E%3Ccircle cx='25' cy='8' r='4' fill='%23c9650f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Semi+Condensed:wght@500;600&amp;display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem("g4-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/style.css?v=4">
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="index.html">Group 4 <span>· Aspect × forest type</span></a>
+  <nav class="nav" aria-label="Pages">
+    <a href="index.html">Overview</a>
+    <a href="causal-map.html">Cause–effect map</a>
+    <a href="simulator.html">Simulator</a>
+    <a href="predictions.html">Predictions</a>
+    <a href="methods.html" aria-current="page">Methods</a>
+    <button type="button" class="theme" id="themeBtn" role="switch" aria-checked="false"><span class="track" aria-hidden="true"><span class="knob"></span></span>Dark mode</button>
+  </nav>
+</div></header>
+<script>
+/* light/dark toggle: light by default, the choice is remembered in this browser */
+(function () {
+  var b = document.getElementById('themeBtn'), r = document.documentElement;
+  function sync() { b.setAttribute('aria-checked', r.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
+  b.addEventListener('click', function () {
+    var dark = r.getAttribute('data-theme') !== 'dark';
+    if (dark) r.setAttribute('data-theme', 'dark'); else r.removeAttribute('data-theme');
+    try { localStorage.setItem('g4-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    sync();
+  });
+  sync();
+})();
+</script>
+
+<main>
+<section class="band" id="design"><div class="wrap">
+  <h1>What we measure, where, and why</h1>
+  <p class="lead">Four plots, one per combination of aspect and forest type, all on the same contour line. At each plot the same sensor stack records microclimate for two weeks, and one soil profile with auger cores describes the topsoil.</p>
+  <ul class="steps">
+    <li><b>Plots:</b> about 20 × 20 m each (N-C, N-D, S-C, S-D), on one contour line taken from the 1 m DGM and checked with GPS.</li>
+    <li><b>Comparable plots:</b> similar slope angle, at least one tree height from stand edges and paths, loggers at least 5 m apart.</li>
+    <li><b>Same soil material:</b> the profile and auger cores have to show comparable parent material at all four plots, because part of the garden’s topsoil was brought in.</li>
+  </ul>
+</div></section>
+
+<section class="band pan" id="parameters"><div class="wrap">
+  <h2>Parameters and why we chose them</h2>
+  <div class="scroll"><table class="ptab stack">
+    <thead><tr><th>Parameter</th><th>Instrument and placement</th><th class="n">Per plot</th><th>Why we measure it</th><th>Tests</th></tr></thead>
+    <tbody>
+      <tr><td data-l="Parameter">Light at the forest floor</td><td data-l="Instrument and placement">HOBO Pendant, 2 m, level, on a pole at least 1 m from stems</td><td class="n" data-l="Per plot">2</td><td data-l="Why">Radiation is the mechanism behind both the aspect and the canopy effect.</td><td data-l="Tests">H1, H2</td></tr>
+      <tr><td data-l="Parameter">Canopy openness</td><td data-l="Instrument and placement">GLAMA smartphone hemispherical photo at each Pendant</td><td class="n" data-l="Per plot">2</td><td data-l="Why">Measures the forest-type contrast (evergreen vs leaf-off) instead of assuming it.</td><td data-l="Tests">H1, H2</td></tr>
+      <tr><td data-l="Parameter">Air temperature and relative humidity at 1 m</td><td data-l="Instrument and placement">HOBO Pro v2 in a radiation shield</td><td class="n" data-l="Per plot">3</td><td data-l="Why">Standard height for stand climate; shows how strongly each canopy buffers temperature; humidity controls drying of litter and soil.</td><td data-l="Tests">H1, H2</td></tr>
+      <tr><td data-l="Parameter">Air +15 cm, surface +2 cm, soil −6 cm temperature; soil moisture 0–15 cm</td><td data-l="Instrument and placement">TOMST TMS-4, pushed into the mineral soil</td><td class="n" data-l="Per plot">3</td><td data-l="Why">The ground surface is where radiation is absorbed and litter decomposes; aspect and canopy effects are largest here.</td><td data-l="Tests">H1, H2</td></tr>
+      <tr><td data-l="Parameter">O-horizon thickness (L, Of, Oh) and humus form</td><td data-l="Instrument and placement">Folding ruler at the 4 sampling points and in the profile</td><td class="n" data-l="Per plot">4 + profile</td><td data-l="Why">Integrates years of litter input and decomposition; the humus form (mull, moder, mor) shows how much earthworms mix.</td><td data-l="Tests">H1, H2</td></tr>
+      <tr><td data-l="Parameter">Soil pH</td><td data-l="Instrument and placement">pH meter in 0.01 M CaCl₂, at 2 depths of the mineral soil (proposed 0–5 and 5–15 cm) × 4 replicates</td><td class="n" data-l="Per plot">8</td><td data-l="Why">Main chemical response to litter and deposition; two depths show whether acidification is limited to the top.</td><td data-l="Tests">H2</td></tr>
+      
+      <tr><td data-l="Parameter">Horizons and texture</td><td data-l="Instrument and placement">Auger cores at the 4 sampling points and one spade pit; finger test</td><td class="n" data-l="Per plot">4 cores + 1 pit</td><td data-l="Why">Shows that the plots stand on comparable soil; texture sets water storage and buffering and is needed for the TOMST moisture calibration.</td><td data-l="Tests">all</td></tr>
+      
+      <tr><td data-l="Parameter">Elevation, slope angle, aspect</td><td data-l="Instrument and placement">1 m DGM, GPS, clinometer, compass</td><td class="n" data-l="Per plot">1</td><td data-l="Why">Confirms one contour; slope angle changes radiation as much as aspect, so it is recorded as a covariate.</td><td data-l="Tests">design</td></tr>
+      <tr><td data-l="Parameter">Weather reference</td><td data-l="Instrument and placement">The garden’s bioclimatology station, or 1 HOBO Pro v2 + 1 Pendant in the open</td><td class="n" data-l="Per plot">site</td><td data-l="Why">Sorts days into clear and overcast and gives canopy buffering as forest minus open.</td><td data-l="Tests">H1</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section class="band" id="sensors"><div class="wrap">
+  <h2>The same sensor stack at every plot</h2>
+  <div class="two">
+    <div class="ladder" role="group" aria-label="Vertical sensor profile">
+      <div class="rung"><b>2 m</b><div><span>HOBO Pendant</span><small>Light (lux) and air temperature · GLAMA photo here</small></div></div>
+      <div class="rung"><b>1 m</b><div><span>HOBO Pro v2</span><small>Air temperature and relative humidity, in a radiation shield</small></div></div>
+      <div class="rung"><b>+15 cm</b><div><span>TOMST TMS-4</span><small>Near-ground air temperature</small></div></div>
+      <div class="rung"><b>+2 cm</b><div><span>TOMST TMS-4</span><small>Surface temperature</small></div></div>
+      <div class="rung gr"><b></b><div>Ground surface · O-horizon (L, Of, Oh)</div></div>
+      <div class="rung soil"><b>−6 cm</b><div><span>TOMST TMS-4</span><small>Soil temperature</small></div></div>
+      <div class="rung soil"><b>0 to −15 cm</b><div><span>TOMST moisture probe · pH samples</span><small>Soil moisture; pH at two depths; auger core and profile below</small></div></div>
+    </div>
+    <div>
+      <ul class="steps">
+        <li><b>Before 26 Nov:</b> launch all loggers with the same interval (15 min) and clocks set to CET; run them side by side for a few hours to check offsets (the TOMST temperature sensors are accurate to ±0.5 °C).</li>
+        <li><b>Installation:</b> HOBO Pro v2 always in a radiation shield; Pendants level and facing up; TOMST pushed in vertically so the soil sensor sits 6 cm into the mineral soil.</li>
+        <li><b>Records:</b> photo and GPS position of every logger, its ID, and the time of installation and removal.</li>
+        <li><b>Data:</b> the installation day and the half retrieval day are left out; daily statistics use the 13 full days 27 Nov – 9 Dec.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="band pan" id="ph"><div class="wrap">
+  <h2>The role of pH</h2>
+  <p class="sub">Soil pH is the main chemical signal of forest type in our design, and it links the litter to the biology of the soil. Which processes buffer the acids depends on the pH range the soil is in (Ulrich 1981):</p>
+  <div class="scroll"><table class="btab stack">
+    <thead><tr><th>Buffer range</th><th>pH</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td data-l="Buffer range">Carbonate</td><td data-l="pH">8.6–6.2</td><td data-l="What happens">Lime (CaCO₃) neutralises the acid; the widest buffer. Rich soil life, mull humus.</td></tr>
+      <tr><td data-l="Buffer range">Silicate</td><td data-l="pH">6.2–5.0</td><td data-l="What happens">Weathering of feldspars, micas and other silicates neutralises the acid slowly.</td></tr>
+      <tr><td data-l="Buffer range">Exchanger</td><td data-l="pH">5.0–4.2</td><td data-l="What happens">Clay minerals release their exchangeable base cations; Ca, Mg and K become scarce.</td></tr>
+      <tr><td data-l="Buffer range">Aluminium, iron</td><td data-l="pH">below 4.2</td><td data-l="What happens">Aluminium dissolves and can reach toxic levels; it binds phosphorus. Below about 3.8 iron dissolves too. Moder and raw humus.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="two" style="margin-top:16px">
+    <div>
+      <h3>Why it matters for us</h3>
+      <ul class="steps">
+        <li><b>Forest type (H2):</b> needle litter and the extra nitrogen and sulphur deposition under conifers acidify the topsoil.</li>
+        <li><b>Soil biology (H1, H2):</b> earthworms avoid acidic soils; less mixing means a thicker O-horizon and a moder or mor humus form.</li>
+        <li><b>Nutrients:</b> a lower pH means fewer exchangeable base cations and, below 4.2, dissolved aluminium.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What to expect on this site</h3>
+      <p>The garden lies on Muschelkalk with calcareous, clay-rich fill, and limestone is reached at 40–90 cm. Where carbonates remain, the mineral soil stays in the carbonate range and pH hardly changes, even under conifers. Acidification under conifers is then expected mainly in the O-horizon and the top few centimetres. That is what the two pH depths can show.</p>
+      <p class="note">Measure all samples the same way: CaCl₂ values are lower than values in water, so never mix the two.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="texture"><div class="wrap">
+  <h2>Soil texture with the auger cores</h2>
+  <p class="sub">Yes: texture is determined by hand on the auger cores and in the spade pit, horizon by horizon. The cores also give the pH samples, so texture and pH come from the same spots.</p>
+  <div class="two">
+    <ol class="steps">
+      <li>At each of the 4 sampling points, measure the O-horizon (L, Of, Oh) before augering.</li>
+      <li>Take an auger core to the limestone or to the auger’s length; lay it out and mark the horizon boundaries.</li>
+      <li>For each horizon: depth, stones, roots, worm channels.</li>
+      <li>Finger test for each horizon: sand feels gritty, silt floury and soapy, clay sticky and plastic with a shine when rubbed; assign the texture class with the German soil mapping guide (Bodenkundliche Kartieranleitung) used in the course.</li>
+      <li>Take the pH samples from the cores at the two mineral-soil depths.</li>
+      <li>At the spade pit: describe the profile and the humus form in detail.</li>
+    </ol>
+    <div>
+      <h3>Why texture matters here</h3>
+      <ul class="steps">
+        <li><b>Comparability:</b> if one plot sits on clayey fill and another on loess, moisture and pH differences could come from the soil, not from aspect or forest type.</li>
+        <li><b>Water:</b> clay and silt hold more water, so texture shifts soil moisture independently of the canopy.</li>
+        <li><b>Buffering:</b> clay and carbonates set how far pH can fall.</li>
+        <li><b>Calibration:</b> TOMST moisture readings need a soil-specific calibration, chosen by texture class.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="band pan" id="fieldwork"><div class="wrap">
+  <h2>Three field days</h2>
+  <ol class="days">
+    <li><div class="dt">Thu 26 Nov<small>09:00–16:00 · installation</small></div><p>Mark the plots on the contour; install per plot 3 TOMST, 3 HOBO Pro v2 at 1 m in shields and 2 Pendants at 2 m; set up the open-field reference if needed; GLAMA photos; GPS, slope, aspect and stand description.</p></li>
+    <li><div class="dt">Thu 3 Dec<small>09:00–16:00 · vegetation and soils</small></div><p>Spade pit and 4 auger cores per plot: horizons, texture, O-horizon, humus form; 32 pH samples; check the loggers.</p></li>
+    <li><div class="dt">Thu 10 Dec<small>09:00–12:00 · deinstallation</small></div><p>Retrieve all loggers and read them out with TOMST Lolly and HOBOware. No soil work is left for this half day.</p></li>
+  </ol>
+</div></section>
+
+<section class="band" id="analysis"><div class="wrap">
+  <h2>Analysis plan</h2>
+  <div class="two">
+    <ol class="steps">
+      <li>For each logger and each of the 13 full days: daily mean, maximum, minimum and range.</li>
+      <li>Average the loggers of each plot; keep their spread.</li>
+      <li>Effects: aspect (south − north), forest type (coniferous − deciduous) and interaction ((S-D − N-D) − (S-C − N-C)).</li>
+      <li>Split days into clear and overcast with the weather reference; test H1 on clear days.</li>
+      <li>Paired daily differences between plots over the 13 days (for example S-D minus N-D), with a Wilcoxon signed-rank test.</li>
+      <li>Soil: means and spread of the 4 replicates of pH and O-horizon per plot.</li>
+    </ol>
+    <div class="callout"><b>What the design can and cannot show.</b> Each combination of aspect and forest type is one stand, so the loggers within a plot are subsamples, not independent replicates (Hurlbert 1984). We therefore report the results as a comparison of four stands, with effect sizes and the spread between loggers, and do not claim a general aspect or forest-type effect.</div>
+  </div>
+</div></section>
+
+<section class="band pan" id="instruments"><div class="wrap">
+  <h2>Instruments</h2>
+  <ul class="steps">
+    <li>TOMST TMS-4: 12 (3 per plot)</li>
+    <li>HOBO Pro v2 temperature/RH loggers with radiation shields: 12 (3 per plot), plus 1 for an open-field reference if available</li>
+    <li>HOBO Pendant light/temperature loggers: 8 (2 per plot), plus 1 for the reference, with poles for 2 m</li>
+    <li>GPS, compass, clinometer, measuring tape, folding ruler, flagging tape</li>
+    <li>Spade, auger, 4 soil cylinders</li>
+    <li>32 sample bags and a marker; pH meter and 0.01 M CaCl₂ in the lab</li>
+    <li>Smartphone with the GLAMA app</li>
+  </ul>
+</div></section>
+
+<section class="band" id="references"><div class="wrap">
+  <h2>References</h2>
+  <ul class="steps">
+    <li>Augusto, L., De Schrijver, A., Vesterdal, L., Smolander, A., Prescott, C., Ranger, J. (2015) Influences of evergreen gymnosperm and deciduous angiosperm tree species on the functioning of temperate and boreal forests. <i>Biological Reviews</i> 90(2): 444–466.</li>
+    <li>De Frenne, P. et al. (2019) Global buffering of temperatures under forest canopies. <i>Nature Ecology &amp; Evolution</i> 3(5): 744–749.</li>
+    <li>De Schrijver, A. et al. (2007) The effect of forest type on throughfall deposition and seepage flux: a review. <i>Oecologia</i>.</li>
+    <li>Hurlbert, S.H. (1984) Pseudoreplication and the design of ecological field experiments. <i>Ecological Monographs</i> 54: 187–211.</li>
+    <li>Ulrich, B. (1981) Ökologische Gruppierung von Böden nach ihrem chemischen Bodenzustand. <i>Zeitschrift für Pflanzenernährung und Bodenkunde</i> 144: 289–305.</li>
+    <li>Wild, J. et al. (2019) Climate at ecologically relevant scales: a new temperature and soil moisture logger for long-term microclimate measurement. <i>Agricultural and Forest Meteorology</i> 268: 40–47.</li>
+    <li>Mulder, D. (1953): the chart of nutrient interactions that the cause–effect map is styled after; background in <a href="https://icl-growingsolutions.com/agriculture/knowledge-hub/understanding-mulders-chart-the-key-to-balanced-soil-nutrition/">ICL: Understanding Mulder’s Chart</a>.</li>
+    <li>University of Göttingen: <a href="https://www.uni-goettingen.de/en/site+and+climate/10232.html">Forest Botanical Garden, geological site characteristics</a> and <a href="https://uni-goettingen.de/en/701617.html">site facts</a>.</li>
+    <li>Deutscher Wetterdienst: <a href="https://www.dlr.rlp.de/Internet/global/themen.nsf/71d722c50f66ecc3c12581210042df58/ad7800c54506ac4ac1258c0a003aee58/$FILE/2024-12-30_Deutschlandwetter_Dezember_2024.pdf">Deutschlandwetter im Dezember 2024</a> (December normals 1991–2020: 1.8 °C, 71 mm, 42 sunshine hours).</li>
+    <li>Terrain: 1 m DGM from the course files; Lower Saxony’s open geodata are published by LGLN at <a href="https://opengeodata.lgln.niedersachsen.de/">opengeodata.lgln.niedersachsen.de</a>.</li>
+  </ul>
+</div></section>
+</main>
+
+<footer class="foot band"><div class="wrap">
+  <p>Group 4: Amatul Jameel, Waleed Ramzan, Mohammed Abakar Hasan Abdalrahman, Pramodya Kumarage · Landscape Ecology Project Seminar 2026/27 (Prof. Dr. Daniela Sauer, Dr. Stephen Asabere), Faculty of Geosciences and Geography, University of Göttingen.</p>
+</div></footer>
+<script>
+/* shows a red notice if a file of the site did not load (for example after an incomplete upload) */
+(function () {
+  var need = {}, miss = [];
+  if (!getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()) miss.push('assets/css/style.css');
+  for (var f in need) if (!need[f]()) miss.push(f);
+  if (!miss.length) return;
+  var d = document.createElement('div');
+  d.setAttribute('role', 'alert');
+  d.style.cssText = 'background:#d22b3c;color:#fff;padding:12px 16px;font:16px/1.4 system-ui,sans-serif';
+  d.textContent = 'These files did not load: ' + miss.join(', ') + '. Upload the whole repository again (including the assets and data folders), wait a minute, then reload with Ctrl+Shift+R (Cmd+Shift+R on a Mac).';
+  document.body.insertBefore(d, document.body.firstChild);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Knoll Simulator · Group 4</title>
+<meta name="description" content="The knoll of the Forest Botanical Garden in 3D with the four plots of Group 4 and the December sun (Landscape Ecology Project Seminar 2026/27, University of Göttingen).">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 28L16 6l14 22z' fill='%231f6a44'/%3E%3Ccircle cx='25' cy='8' r='4' fill='%23c9650f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Semi+Condensed:wght@500;600&amp;display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem("g4-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/style.css?v=4">
+<style>
+/* live location */
+.views .locb{border-color:#1f7ae0;color:#1f7ae0;font-weight:600}
+.views .locb[aria-pressed=true]{background:#1f7ae0;color:#fff}
+.lab.me{border-color:#1f7ae0;background:#1f7ae0;color:#fff;cursor:default}
+.locmsg{margin:0;padding:8px 12px;font-size:14px;border-left:4px solid #1f7ae0;background:color-mix(in srgb,#1f7ae0 10%,var(--bg))}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="index.html">Group 4 <span>· Aspect × forest type</span></a>
+  <nav class="nav" aria-label="Pages">
+    <a href="index.html">Overview</a>
+    <a href="causal-map.html">Cause–effect map</a>
+    <a href="simulator.html" aria-current="page">Simulator</a>
+    <a href="predictions.html">Predictions</a>
+    <a href="methods.html">Methods</a>
+    <button type="button" class="theme" id="themeBtn" role="switch" aria-checked="false"><span class="track" aria-hidden="true"><span class="knob"></span></span>Dark mode</button>
+  </nav>
+</div></header>
+<script>
+/* light/dark toggle: light by default, the choice is remembered in this browser */
+(function () {
+  var b = document.getElementById('themeBtn'), r = document.documentElement;
+  function sync() { b.setAttribute('aria-checked', r.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
+  b.addEventListener('click', function () {
+    var dark = r.getAttribute('data-theme') !== 'dark';
+    if (dark) r.setAttribute('data-theme', 'dark'); else r.removeAttribute('data-theme');
+    try { localStorage.setItem('g4-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    sync();
+  });
+  sync();
+})();
+</script>
+
+<main>
+<section class="band" style="padding-bottom:18px"><div class="wrap">
+  <h1>Knoll simulator</h1>
+  <p class="sub">The real terrain of the knoll, our four plots and the sun over the logging period, 26 Nov – 10 Dec. See where the plots are, how much direct sun each one gets, and where you are when you stand on the knoll.</p>
+</div></section>
+
+<section class="stage">
+  <div>
+    <div class="fig" id="fig" data-map="terrain">
+      <div class="views" role="group" aria-label="Camera views"><button type="button" data-v="se">Knoll</button><button type="button" data-v="s">From south</button><button type="button" data-v="n">From north</button><button type="button" data-v="all">Whole garden</button><button type="button" data-v="top">Top</button><button type="button" class="locb" id="loc" aria-pressed="false">My location</button></div>
+      <div class="compass" title="North arrow"><svg viewBox="-17 -17 34 34" id="needle"><path d="M0-14 6 6 0 2-6 6Z" fill="var(--red)"/><text x="0" y="15" font-size="9" text-anchor="middle" style="fill:var(--ink);font-weight:600">N</text></svg></div>
+      <div class="banner" id="banner"></div>
+      <div class="legend" id="legend">Direct sun on 3 Dec relative to flat ground (terrain only, before the canopy)<i></i><span><em>0×</em><em>1×</em><em>2.5×</em></span></div>
+      <div class="hint">1 m DGM at 3 m, heights ×1.5 · drag to orbit, scroll to zoom</div>
+    </div>
+    <p class="locmsg" id="locmsg" role="status" hidden></p>
+    <div class="scrub">
+      <input type="range" id="tk" min="0" max="2087" step="1" aria-label="Time in the logging period">
+      <button class="btn" id="play" type="button" aria-pressed="false">Play</button>
+      <p class="read" id="tread"></p>
+    </div>
+    <div class="sunbox">
+      <h3 id="sunhead">Direct sun on the plots</h3>
+      <div class="rows" id="sunrows"></div>
+      <p class="note">Direct sunlight reaching the ground from the terrain alone, for a clear sky and before the canopy. “Now” is the share of a full beam hitting the surface head-on; “Day” is the whole day’s direct sun relative to open flat ground.</p>
+    </div>
+  </div>
+
+  <aside>
+    <h3>Map colouring</h3>
+    <div class="seg" id="maps" role="group" aria-label="Map colouring"><button type="button" data-m="terrain">Terrain</button><button type="button" data-m="aspect">Aspect</button><button type="button" data-m="sun">December sun</button></div>
+    <h4>Plots</h4>
+    <div class="mx" role="group" aria-label="Choose a plot">
+      <span></span><span class="mh">Coniferous</span><span class="mh">Deciduous</span>
+      <span class="mh r">North</span><button type="button" data-s="N-C">N-C</button><button type="button" data-s="N-D">N-D</button>
+      <span class="mh r">South</span><button type="button" data-s="S-C">S-C</button><button type="button" data-s="S-D">S-D</button>
+    </div>
+    <div id="card"></div>
+  </aside>
+</section>
+
+<section class="band"><div class="wrap">
+  <h2>How it works</h2>
+  <div class="notes" style="margin-top:14px">
+    <div><b>Terrain</b>The course’s 1 m DGM, resampled to 3 m. Heights are exaggerated 1.5× in the view only; slope, aspect and the horizon of each plot are calculated at true scale.</div>
+    <div><b>Plots</b>Field positions measured by GPS on 21 Nov. Moved plots are kept in this browser; use Copy coordinates and paste the numbers into <code>PLOTS_UTM</code> in <code>assets/js/simulator.js</code> so everyone sees them.</div>
+    <div><b>Sun</b>Sun position from the NOAA solar equations for 51.560° N, 9.965° E, CET, in 10-minute steps through the logging period. Play runs through the days; the dashed arc is the sun path on 3 Dec.</div>
+    <div><b>My location</b>Shows where you are on the knoll, using your phone’s GPS. The browser asks for permission first; the position stays in your browser and is not sent anywhere. Under trees GPS is often off by 5–20 m, so the blue circle shows the accuracy the phone reports. Press again to stop.</div>
+    <div><b>Direct sun</b>Zero when the sun is below the plot’s terrain horizon or behind its own slope; otherwise the share of the beam that hits the slope head-on. Clouds and the canopy cut it further, and that is what the loggers will measure.</div>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot band"><div class="wrap">
+  <p>Group 4: Amatul Jameel, Waleed Ramzan, Mohammed Abakar Hasan Abdalrahman, Pramodya Kumarage · Landscape Ecology Project Seminar 2026/27 (Prof. Dr. Daniela Sauer, Dr. Stephen Asabere), Faculty of Geosciences and Geography, University of Göttingen.</p>
+  <p>Terrain: 1 m digital ground model from the course files (Lower Saxony DGM1, © LGLN, CC BY 4.0), resampled to 3 m by Group 4. 3D rendering: three.js r128 (MIT licence).</p>
+</div></footer>
+<script src="data/dgm.js"></script>
+<script src="assets/vendor/three.min.js"></script>
+<script src="assets/vendor/OrbitControls.js"></script>
+<script src="assets/js/simulator.js?v=4"></script>
+<script>
+/* shows a red notice if a file of the site did not load (for example after an incomplete upload) */
+(function () {
+  var need = {'data/dgm.js': function () { return !!window.DGM; }, 'assets/vendor/three.min.js': function () { return !!window.THREE; }, 'assets/vendor/OrbitControls.js': function () { return !!(window.THREE && window.THREE.OrbitControls); }, 'assets/js/simulator.js': function () { return !!window.G4_SIM; }}, miss = [];
+  if (!getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()) miss.push('assets/css/style.css');
+  for (var f in need) if (!need[f]()) miss.push(f);
+  if (!miss.length) return;
+  var d = document.createElement('div');
+  d.setAttribute('role', 'alert');
+  d.style.cssText = 'background:#d22b3c;color:#fff;padding:12px 16px;font:16px/1.4 system-ui,sans-serif';
+  d.textContent = 'These files did not load: ' + miss.join(', ') + '. Upload the whole repository again (including the assets and data folders), wait a minute, then reload with Ctrl+Shift+R (Cmd+Shift+R on a Mac).';
+  document.body.insertBefore(d, document.body.firstChild);
+})();
+</script>
+</body>
+</html>

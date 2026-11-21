@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cause–Effect Map · Group 4</title>
+<meta name="description" content="Mulder-style cause–effect map of aspect, forest type, microclimate and topsoil processes for the Group 4 Landscape Ecology project, University of Göttingen.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 28L16 6l14 22z' fill='%231f6a44'/%3E%3Ccircle cx='25' cy='8' r='4' fill='%23c9650f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Semi+Condensed:wght@500;600&amp;display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem("g4-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/style.css?v=4">
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="index.html">Group 4 <span>· Aspect × forest type</span></a>
+  <nav class="nav" aria-label="Pages">
+    <a href="index.html">Overview</a>
+    <a href="causal-map.html" aria-current="page">Cause–effect map</a>
+    <a href="simulator.html">Simulator</a>
+    <a href="predictions.html">Predictions</a>
+    <a href="methods.html">Methods</a>
+    <button type="button" class="theme" id="themeBtn" role="switch" aria-checked="false"><span class="track" aria-hidden="true"><span class="knob"></span></span>Dark mode</button>
+  </nav>
+</div></header>
+<script>
+/* light/dark toggle: light by default, the choice is remembered in this browser */
+(function () {
+  var b = document.getElementById('themeBtn'), r = document.documentElement;
+  function sync() { b.setAttribute('aria-checked', r.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
+  b.addEventListener('click', function () {
+    var dark = r.getAttribute('data-theme') !== 'dark';
+    if (dark) r.setAttribute('data-theme', 'dark'); else r.removeAttribute('data-theme');
+    try { localStorage.setItem('g4-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    sync();
+  });
+  sync();
+})();
+</script>
+
+<main>
+<section class="band"><div class="wrap">
+  <h1>Cause–effect map</h1>
+  <p class="lead">All factors, processes and measured variables of our study on one ring, in the style of Mulder’s chart of nutrient interactions. Each arrow says “more of this gives more (or less) of that”. Click a box to follow its effects along every chain.</p>
+  <div class="mapgrid">
+    <div>
+      <div class="ringwrap"><div class="ringbox" id="ringbox"><svg id="ring" role="img" aria-label="Ring of factors, processes and variables connected by arrows that increase or decrease each other"></svg></div></div>
+      <div class="mlegend">
+        <span><svg viewBox="0 0 34 12" aria-hidden="true"><line x1="1" y1="6" x2="26" y2="6" stroke="var(--pos)" stroke-width="2"/><path d="M25 2L33 6L25 10z" fill="var(--pos)"/></svg>increases</span>
+        <span><svg viewBox="0 0 34 12" aria-hidden="true"><line x1="1" y1="6" x2="26" y2="6" stroke="var(--neg)" stroke-width="2" stroke-dasharray="6 4"/><path d="M25 2L33 6L25 10z" fill="var(--neg)"/></svg>decreases</span>
+        <span><svg viewBox="0 0 34 12" aria-hidden="true"><line x1="1" y1="6" x2="26" y2="6" stroke="var(--mut)" stroke-width="2" stroke-dasharray="2 4"/><path d="M25 2L33 6L25 10z" fill="var(--mut)"/></svg>changes the strength of an effect</span>
+        <span><svg viewBox="0 0 34 12" aria-hidden="true"><line x1="1" y1="6" x2="26" y2="6" stroke="var(--mut)" stroke-width="2" stroke-dasharray="2 4" opacity=".35"/><path d="M25 2L33 6L25 10z" fill="var(--mut)" opacity=".35"/></svg>removed by the design</span>
+        <span><svg viewBox="0 0 34 12" aria-hidden="true"><circle cx="17" cy="6" r="4" fill="var(--mut)"/></svg>measured or observed by us</span>
+        <span><svg viewBox="0 0 34 12" aria-hidden="true"><rect x="3" y="1.5" width="28" height="9" rx="3" fill="var(--pan)" stroke="var(--ink)" stroke-width="2.5"/></svg>design factor</span>
+      </div>
+      <div class="mlegend">
+        <span><svg viewBox="0 0 34 12" aria-hidden="true"><rect x="3" y="1.5" width="28" height="9" rx="3" fill="none" stroke="var(--ink)" stroke-width="2"/></svg>factors and site</span>
+        <span><svg viewBox="0 0 34 12" aria-hidden="true"><rect x="3" y="1.5" width="28" height="9" rx="3" fill="none" stroke="var(--s)" stroke-width="2"/></svg>radiation and temperature</span>
+        <span><svg viewBox="0 0 34 12" aria-hidden="true"><rect x="3" y="1.5" width="28" height="9" rx="3" fill="none" stroke="var(--rain)" stroke-width="2"/></svg>water</span>
+        <span><svg viewBox="0 0 34 12" aria-hidden="true"><rect x="3" y="1.5" width="28" height="9" rx="3" fill="none" stroke="var(--d)" stroke-width="2"/></svg>litter and soil</span>
+      </div>
+      <p class="note">Hover over an arrow for its reason; click it to keep it in the panel. On a phone, scroll the ring sideways or use the lists in the panel.</p>
+    </div>
+    <div>
+      <h3>Hypotheses</h3>
+      <div class="seg hyps" id="hyps" role="group" aria-label="Hypotheses"></div>
+      <div class="tools one"><label>Box<select id="pick" aria-label="Pick a box"></select></label></div>
+      <div class="tools"><label>Trace from<select id="tf"></select></label><label>to<select id="tt"></select></label><button class="btn" id="go" type="button">Show chains</button></div>
+      <div class="panel" id="panel" aria-live="polite"></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band pan"><div class="wrap">
+  <h2>How the map helps us write and test the hypotheses</h2>
+  <div class="notes" style="margin-top:14px">
+    <div><b>Every arrow is a claim with a reason</b>Click an arrow to read why it is there. When a result surprises us, the arrows on that chain are the first things to question.</div>
+    <div><b>A hypothesis is a chain</b>Each one starts at a design factor (aspect or forest type) and ends at something we measure. Pick H1 or H2 to see which arrows it relies on.</div>
+    <div><b>Signs multiply</b>Coniferous forest increases canopy closure; canopy closure decreases light at the floor; light increases the daily temperature range. One decrease in the chain, so conifers should have a smaller range (H2).</div>
+    <div><b>Disagreeing chains show the risk</b>Where chains point both ways, the result depends on which process is stronger. That is the case for the O-horizon on the south slope (H1), soil moisture under conifers (H2) and, weakly, pH (H2).</div>
+    <div><b>Boxes without a dot are assumptions</b>We do not measure decomposition, interception or leaching. The hypotheses assume them, so the poster should say so.</div>
+    <div><b>The design removes or records paths</b>Elevation is held constant, so its arrow is faded. Slope angle, cloud cover and texture still act, so we record them as covariates.</div>
+    <div><b>Feedback loops act slowly</b>A thicker O-horizon keeps the soil moister, which speeds decomposition, which thins the O-horizon again. Loops like this shape soils over years, not within our two weeks of logging.</div>
+    <div><b>Editing the map</b>All boxes, arrows and hypotheses are three lists at the top of <code>assets/js/causal-map.js</code>. Add or change an entry there and the ring, the chains and the panel update on reload.</div>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot band"><div class="wrap">
+  <p>Group 4: Amatul Jameel, Waleed Ramzan, Mohammed Abakar Hasan Abdalrahman, Pramodya Kumarage · Landscape Ecology Project Seminar 2026/27 (Prof. Dr. Daniela Sauer, Dr. Stephen Asabere), Faculty of Geosciences and Geography, University of Göttingen.</p>
+  <p>Chart style after Mulder’s chart of nutrient interactions (D. Mulder, 1953). Sources for the arrows are listed on the <a href="methods.html#references">Methods</a> page.</p>
+</div></footer>
+<script src="assets/js/causal-map.js?v=5"></script>
+<script>
+/* shows a red notice if a file of the site did not load (for example after an incomplete upload) */
+(function () {
+  var need = {'assets/js/causal-map.js': function () { return !!window.G4_MAP; }}, miss = [];
+  if (!getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()) miss.push('assets/css/style.css');
+  for (var f in need) if (!need[f]()) miss.push(f);
+  if (!miss.length) return;
+  var d = document.createElement('div');
+  d.setAttribute('role', 'alert');
+  d.style.cssText = 'background:#d22b3c;color:#fff;padding:12px 16px;font:16px/1.4 system-ui,sans-serif';
+  d.textContent = 'These files did not load: ' + miss.join(', ') + '. Upload the whole repository again (including the assets and data folders), wait a minute, then reload with Ctrl+Shift+R (Cmd+Shift+R on a Mac).';
+  document.body.insertBefore(d, document.body.firstChild);
+})();
+</script>
+</body>
+</html>

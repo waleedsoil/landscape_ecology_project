@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aspect × Forest Type · Group 4</title>
+<meta name="description" content="Group 4, Landscape Ecology Project Seminar 2026/27, University of Göttingen: how slope aspect and forest type shape early-winter microclimate and topsoil in the Forest Botanical Garden.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 28L16 6l14 22z' fill='%231f6a44'/%3E%3Ccircle cx='25' cy='8' r='4' fill='%23c9650f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Semi+Condensed:wght@500;600&amp;display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem("g4-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/style.css?v=4">
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="index.html">Group 4 <span>· Aspect × forest type</span></a>
+  <nav class="nav" aria-label="Pages">
+    <a href="index.html" aria-current="page">Overview</a>
+    <a href="causal-map.html">Cause–effect map</a>
+    <a href="simulator.html">Simulator</a>
+    <a href="predictions.html">Predictions</a>
+    <a href="methods.html">Methods</a>
+    <button type="button" class="theme" id="themeBtn" role="switch" aria-checked="false"><span class="track" aria-hidden="true"><span class="knob"></span></span>Dark mode</button>
+  </nav>
+</div></header>
+<script>
+/* light/dark toggle: light by default, the choice is remembered in this browser */
+(function () {
+  var b = document.getElementById('themeBtn'), r = document.documentElement;
+  function sync() { b.setAttribute('aria-checked', r.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
+  b.addEventListener('click', function () {
+    var dark = r.getAttribute('data-theme') !== 'dark';
+    if (dark) r.setAttribute('data-theme', 'dark'); else r.removeAttribute('data-theme');
+    try { localStorage.setItem('g4-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    sync();
+  });
+  sync();
+})();
+</script>
+
+<main>
+<section class="band"><div class="wrap hero">
+  <div>
+    <h1>Slope aspect and forest type as controls on early-winter microclimate and topsoil</h1>
+    <p class="lead">Four forest plots on one contour line of the hill in the Forest Botanical Garden, Göttingen: north- and south-facing, coniferous and deciduous. Elevation is held constant, so differences between the plots come from aspect, forest type, or both together.</p>
+    <p class="team"><b>Group 4</b> · Amatul Jameel, Waleed Ramzan, Mohammed Abakar Hasan Abdalrahman, Pramodya Kumarage<br>Landscape Ecology Project Seminar 2026/27 · Prof. Dr. Daniela Sauer, Dr. Stephen Asabere · University of Göttingen</p>
+    <div class="btns"><a class="btn pri" href="causal-map.html">Explore the cause–effect map</a><a class="btn" href="simulator.html">Run the simulator</a></div>
+  </div>
+  <div class="xfig"><svg id="xsec" role="img" aria-label="Cross-section of the hill: the north-facing slope is in shade, the low December sun from the south lights the south-facing slope; on both slopes a coniferous and a deciduous plot sit on the same contour line."></svg></div>
+</div></section>
+
+<section class="band" id="hypotheses"><div class="wrap">
+  <h2>Main question</h2>
+  <p class="q">How do slope aspect and forest type, alone and together, shape early-winter microclimate and topsoil at constant elevation?</p>
+  <h2>Hypotheses and research questions</h2>
+  <div class="scroll"><table class="htab stack">
+    <thead><tr><th></th><th>Hypothesis</th><th>Research question</th><th>Reason</th></tr></thead>
+    <tbody>
+      <tr><td class="hid" data-l="">H1</td>
+        <td data-l="Hypothesis">South-facing plots have more light at the forest floor, a higher daily maximum and larger daily range of air, surface and topsoil temperature, and lower relative humidity and soil moisture than north-facing plots, especially on clear days; the difference between coniferous and deciduous plots is larger on the south-facing slope; and the O-horizon is thicker on the north-facing slope, thickest in N-C and thinnest in S-D.</td>
+        <td data-l="Research question">How do slope aspect and its interaction with forest type govern forest-floor microclimate and O-horizon accumulation?</td>
+        <td data-l="Reason">At Göttingen’s latitude, the low December sun (~16° noon elevation) leaves ~20° north-facing slopes almost entirely shaded, whereas south-facing slopes intercept direct solar radiation that warms and dries the surface—a contrast most pronounced on clear days given sparse winter sunshine. On south-facing slopes, this low-angle light penetrates leafless deciduous canopies but is intercepted by dense evergreen conifers, creating a sharp microclimatic divergence; on north-facing slopes, terrain shading restricts both stand types to diffuse light, minimizing canopy differences. Because litter decomposition accelerates with warmth in this humid climate, cooler north-facing conditions retard decay and promote organic buildup, compounding with recalcitrant needle litter to yield the thickest O-horizon in N-C and the thinnest in S-D (a spatial correspondence two weeks of logger data can evaluate, though not prove causally).</td></tr>
+      <tr><td class="hid" data-l="">H2</td>
+        <td data-l="Hypothesis">Compared with deciduous forests, coniferous forests exhibit a thicker O-horizon, lower mineral soil pH (particularly in the upper mineral soil), less light at the forest floor, a smaller daily temperature range, and drier topsoil in early winter.</td>
+        <td data-l="Research question">How does forest type affect O-horizon thickness, mineral soil pH, and early-winter microclimate (light, daily temperature range, and topsoil moisture)?</td>
+        <td data-l="Reason">Needle litter is acidic and poor in nutrients, so it decomposes slowly and builds up into a thicker forest floor than under deciduous trees. Deciduous litter often decomposes faster because of its tissue chemistry, moister soil, and good conditions for earthworms. Decomposing needle litter releases organic acids into the mineral soil, and conifer stands receive more nitrogen and sulphur through throughfall than deciduous stands, acidifying the soil further—though carbonate buffering on calcareous garden soils may limit the pH effect to the top few centimetres. In November and December, deciduous trees are leafless while evergreen conifers still block light. Because forests insulate the understorey and a denser canopy buffers temperatures more, while mean soil temperatures often differ little or only slightly between forest types, we compare daily temperature ranges rather than means. Evergreen conifers also let less precipitation reach the soil, leading to drier topsoil.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Null hypotheses: no difference between aspects and no aspect × forest-type interaction (H1); no difference between forest types (H2). Each combination is one stand, so results are comparisons of four stands; see <a href="methods.html#analysis">Methods</a>.</p>
+</div></section>
+
+<section class="band pan"><div class="wrap">
+  <h2>The study site</h2>
+  <p class="sub">The Forest Botanical Garden lies on the south-western slope of the Faßberg in the north of Göttingen. Its soils are not natural: when the garden was laid out in the early 1970s, soil was moved to shape the terrain, and clay-rich, calcareous, stony topsoil from a building site in north Göttingen was brought in over the Middle and Lower Muschelkalk (University of Göttingen).</p>
+  <div class="facts2">
+    <div><b>Muschelkalk</b><span>limestone parent rock, originally under slope debris and loess</span></div>
+    <div><b>40–90 cm</b><span>depth at which limestone is reached, depending on the fill</span></div>
+    <div><b>8.4 °C · 628 mm</b><span>annual mean temperature and precipitation</span></div>
+    <div><b>16°</b><span>height of the noon sun on 3 Dec; the north slope gets almost no direct beam</span></div>
+  </div>
+  <p class="note">Because the topsoil was partly imported, the soil profile at each plot has to show that the four plots stand on comparable material before differences can be put down to aspect or forest type. The garden’s bioclimatology station records weather continuously and can serve as the open-field reference.</p>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <h2>From work plan to poster</h2>
+  <ol class="days">
+    <li class="done"><div class="dt">Thu 5 Nov<small>09:00–12:00 · done</small></div><p>Visit to the study area; groups formed on 12 Nov.</p></li>
+    <li><div class="dt">Thu 19 Nov<small>08:15–09:45</small></div><p>Double-check hypotheses and finalise the work plan; fix the four plots on one contour.</p></li>
+    <li><div class="dt">Wed 25 Nov<small>10:15–11:45</small></div><p>Groups present hypotheses and work plans.</p></li>
+    <li><div class="dt">Thu 26 Nov<small>09:00–16:00</small></div><p><b>Fieldwork day 1, sensor installation.</b> Loggers start recording.</p></li>
+    <li><div class="dt">Thu 3 Dec<small>09:00–16:00</small></div><p><b>Fieldwork day 2, vegetation and soils.</b> Profiles, auger cores, texture, O-horizon, pH samples (soil description lecture on Wed 2 Dec).</p></li>
+    <li><div class="dt">Thu 10 Dec<small>09:00–12:00</small></div><p><b>Fieldwork day 3, sensor deinstallation.</b> About 14 days of microclimate record per logger.</p></li>
+    <li><div class="dt">Thu 17 Dec<small>08:15–09:45</small></div><p>Start the analysis (data analysis lecture on Wed 16 Dec).</p></li>
+    <li><div class="dt">Thu 21 Jan<small>08:15–09:45</small></div><p>Submit the A0 portrait poster.</p></li>
+    <li><div class="dt">28 Jan · 4 Feb · 11 Feb<small>Thursdays 08:15–09:45</small></div><p>Poster presentations, about 10 min per person. Grade: 2/3 poster, 1/3 presentation.</p></li>
+  </ol>
+  <p class="note">Dates from the module overview, winter 2026/27.</p>
+</div></section>
+
+<section class="band pan"><div class="wrap">
+  <h2>Pages</h2>
+  <div class="cards">
+    <a class="card" href="causal-map.html"><h3>Cause–effect map</h3><p>A Mulder-style ring of 27 factors, processes and variables. Follow any change along every chain of arrows, and see which chains each hypothesis relies on.</p></a>
+    <a class="card" href="simulator.html"><h3>Simulator</h3><p>The real terrain in 3D with our four plots and the December sun: how much direct sun each plot gets on every day of the logging period.</p></a>
+    <a class="card" href="predictions.html"><h3>Predictions</h3><p>For every variable we measure: which plot should be highest, the expected 2 × 2 pattern, and, after the fieldwork, whether the data agree.</p></a>
+    <a class="card" href="methods.html"><h3>Methods</h3><p>What we measure, where and why: sensors, soil profile and texture, pH, the three field days and the analysis plan.</p></a>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot band"><div class="wrap">
+  <p>Group 4: Amatul Jameel, Waleed Ramzan, Mohammed Abakar Hasan Abdalrahman, Pramodya Kumarage · Landscape Ecology Project Seminar 2026/27 (Prof. Dr. Daniela Sauer, Dr. Stephen Asabere), Faculty of Geosciences and Geography, University of Göttingen.</p>
+  <p>Site description and climate figures: University of Göttingen, Forest Botanical Garden (site and climate pages). Full references on the <a href="methods.html#references">Methods</a> page.</p>
+</div></footer>
+<script src="assets/js/overview.js?v=3"></script>
+<script>
+/* shows a red notice if a file of the site did not load (for example after an incomplete upload) */
+(function () {
+  var need = {'assets/js/overview.js': function () { return !!window.G4_OVERVIEW; }}, miss = [];
+  if (!getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()) miss.push('assets/css/style.css');
+  for (var f in need) if (!need[f]()) miss.push(f);
+  if (!miss.length) return;
+  var d = document.createElement('div');
+  d.setAttribute('role', 'alert');
+  d.style.cssText = 'background:#d22b3c;color:#fff;padding:12px 16px;font:16px/1.4 system-ui,sans-serif';
+  d.textContent = 'These files did not load: ' + miss.join(', ') + '. Upload the whole repository again (including the assets and data folders), wait a minute, then reload with Ctrl+Shift+R (Cmd+Shift+R on a Mac).';
+  document.body.insertBefore(d, document.body.firstChild);
+})();
+</script>
+</body>
+</html>
